@@ -853,11 +853,15 @@ print("mymodel_more: f MSE:%.4f" % mean_squared_error(test_labels['f'], test_pre
     mymodel_more: f MSE:0.0096
     
 To build image run:
+
 docker build . -t tf_serving_image3
 
 To run container:
+
 docker run -p 8501:8501 tf_serving_image3 --model_config_file=/models/models.config
 
 Test with:
+
 curl -d '{"instances": [[7.5275, -3.7121, 0.3623, 38.6359]]}' -X POST http://127.0.0.1:8501/v1/models/mymodel:predict
+
 curl -d '{"instances": [[7.5275, -3.7121, 0.3623, 38.6359]]}' -X POST http://127.0.0.1:8501/v1/models/mymodel_more:predict
